@@ -1,0 +1,23 @@
+{
+  "name": "project-summarizer",
+  "version": "1.0.0",
+  "description": "Summarize git changes across multiple projects using Claude AI",
+  "type": "module",
+  "bin": {
+    "summarize": "./summarize.js",
+    "pull-projects": "./pull.js"
+  },
+  "scripts": {
+    "start": "node summarize.js",
+    "summarize": "node summarize.js",
+    "summarize:openrouter": "node summarize.js --provider openrouter --openrouter-model openrouter/auto",
+    "summarize:google": "node summarize.js --provider google --google-delay 9000",
+    "pipeline:google": "sh pull_and_summarize_7days_google.sh",
+    "pull": "node pull.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.52.0",
+    "@google/generative-ai": "^0.24.0",
+    "openai": "^4.97.0"
+  }
+}

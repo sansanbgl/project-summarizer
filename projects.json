@@ -1,0 +1,30 @@
+{
+  "projects": [
+    { "name": "allbank-api", "path": "~/Sites/allbank-api" },
+    { "name": "e-aset", "path": "~/Sites/e-aset" },
+    { "name": "heti-aset", "path": "~/Sites/heti-aset" },
+    { "name": "host-to-host", "path": "~/Sites/host-to-host" },
+    { "name": "ikoma-web", "path": "~/Sites/ikoma-web" },
+    { "name": "myits-lelang-va", "path": "~/Sites/myits-lelang-va" },
+    { "name": "myits-payroll-web", "path": "~/Sites/myits-payroll-web" },
+    { "name": "sim-ikoma-poll", "path": "~/Sites/sim-ikoma-poll" },
+    { "name": "simkeu26", "path": "~/Sites/simkeu26" },
+    { "name": "simondits2", "path": "~/Sites/simondits2" },
+    { "name": "simondits3", "path": "~/Sites/simondits3" },
+    { "name": "sipmaba", "path": "~/Sites/sipmaba" },
+    { "name": "sipmaba-bank", "path": "~/Sites/sipmaba-bank" },
+    { "name": "base-laravel", "path": "~/Sites/base-laravel" },
+    { "name": "bill-payment-web", "path": "~/Sites/bill-payment-web" },
+    { "name": "fiscal-web", "path": "~/Sites/fiscal-web" },
+    { "name": "laravel-web-dev", "path": "~/Sites/laravel-web-dev" },
+    { "name": "myits-audit", "path": "~/Sites/myits-audit" },
+    { "name": "myits-housing-backend", "path": "~/Sites/myits-housing-backend" },
+    { "name": "myits-housing-frontend", "path": "~/Sites/myits-housing-frontend" },
+    { "name": "myits-logistics-backend", "path": "~/Sites/myits-logistics-backend" },
+    { "name": "myits-logistics-frontend", "path": "~/Sites/myits-logistics-frontend" },
+    { "name": "myits-student-registration-backend", "path": "~/Sites/myits-student-registration-backend" },
+    { "name": "myits-student-registration-frontend", "path": "~/Sites/myits-student-registration-frontend" },
+    { "name": "vagate", "path": "~/Sites/vagate" },
+    { "name": "vagate-example", "path": "~/Sites/vagate-example" }
+  ]
+}
