@@ -56,6 +56,7 @@ function parseArgs() {
     rawDate: null,
     singleSummary: false,
     singleSummaryMaxCommits: 12,
+    allBranches: false,
     delay: 2000,      // ms between AI calls to avoid rate limits
     googleDelay: 9000, // minimum delay when provider is google
     maxRetries: 3,
@@ -79,6 +80,7 @@ function parseArgs() {
       case '--raw-date':  opts.rawDate = args[++i]; break;
       case '--single-summary': opts.singleSummary = true; break;
       case '--single-summary-max-commits': opts.singleSummaryMaxCommits = parseInt(args[++i], 10); break;
+      case '--all-branches': opts.allBranches = true; break;
       case '--delay':     opts.delay = parseInt(args[++i], 10); break;
       case '--google-delay': opts.googleDelay = parseInt(args[++i], 10); break;
       case '--max-retries': opts.maxRetries = parseInt(args[++i], 10); break;
@@ -103,6 +105,7 @@ Options:
   --single-summary     Make one combined AI summary for all projects
   --single-summary-max-commits <n>
                        Max commits per project included in single-summary (default: 12)
+  --all-branches       Include commits from all branches (read-only)
   --delay <ms>         Delay between AI calls in ms (default: 2000)
   --google-delay <ms>  Minimum delay when provider is google (default: 9000)
   --max-retries <n>    Retries on rate-limit errors (default: 3)
@@ -143,7 +146,7 @@ const PROVIDERS = {
     async build() {
       const { GoogleGenerativeAI } = await import('@google/generative-ai');
       const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-      return genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+      return genAI.getGenerativeModel({ model: 'gemini-3.5-flash' });
     },
     async summarize(client, prompt) {
       const result = await client.generateContent(prompt);
@@ -350,11 +353,12 @@ function getGitLog(projectPath, opts) {
     ? `--since="${opts.since}"`
     : `--since="${opts.days} days ago"`;
   const authorFlag = opts.author ? `--author="${opts.author}"` : '';
+  const allFlag = opts.allBranches ? '--all' : '';
 
   try {
     // Compact commit list for AI prompt
     const commitRaw = execSync(
-      `git log --date=short --format="%h|%an|%ad|%s" ${sinceFlag} ${authorFlag}`,
+      `git log --date=short --format="%h|%an|%ad|%s" ${sinceFlag} ${authorFlag} ${allFlag}`,
       { cwd: absPath, stdio: 'pipe', maxBuffer: 10 * 1024 * 1024 }
     ).toString().trim();
 
@@ -367,7 +371,7 @@ function getGitLog(projectPath, opts) {
 
     // Detailed log with file stats for raw report
     const statRaw = execSync(
-      `git log --date=short --format="%n[%ad] %h  %an: %s" --stat ${sinceFlag} ${authorFlag}`,
+      `git log --date=short --format="%n[%ad] %h  %an: %s" --stat ${sinceFlag} ${authorFlag} ${allFlag}`,
       { cwd: absPath, stdio: 'pipe', maxBuffer: 20 * 1024 * 1024 }
     ).toString().trim();
 

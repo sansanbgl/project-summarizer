@@ -21,4 +21,4 @@ echo "[2/3] Collecting raw logs only (last 7 days)..."
 # node summarize.js --days 7 --raw-only "$@"
 
 echo "[3/3] Summarizing from raw logs with Groq..."
-node summarize.js --ai-only --raw-date "$RAW_DATE" --provider groq "$@"
+node summarize.js --ai-only --raw-date "$RAW_DATE" --provider groq "$@" --all-branches
